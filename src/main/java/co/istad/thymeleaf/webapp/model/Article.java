@@ -21,4 +21,5 @@ public class Article {
 
     @NotBlank(message = "Author is required..!")
     private String author;
+    private String description;
 }

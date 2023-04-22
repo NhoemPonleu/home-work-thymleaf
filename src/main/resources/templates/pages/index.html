@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layouts/master-layout}">
+<link rel="stylesheet" href="style.css">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Homepage</title>
 </head>
 <body>
-$END$
+
+<main layout:fragment="main-content">
+
+    <!-- welcome ~ start -->
+    <div th:replace="~{fragments/welcome}"></div>
+    <!-- welcome ~ end -->
+
+    <!-- card ~ start -->
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-4 row-cols-md-3 g-3">
+                <div class="col" th:each="article : ${articles}" th:object="${article}">
+                    <div th:replace="~{fragments/card :: card-readonly(*{uuid}, *{title}, *{thumbnail}, *{author})}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- card ~ end -->
+
+</main>
+
 </body>
 </html>

@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public interface ArticleMapper {
     @Insert("""
-            INSERT INTO articles(uuid,title,thumbnail,author)
-            VALUES (#{a.uuid},#{a.title},#{a.thumbnail},#{a.author})
+            INSERT INTO articles(uuid,title,thumbnail,author,description)
+            VALUES (#{a.uuid},#{a.title},#{a.thumbnail},#{a.author},#{a.description})
             """)
     void insert(@Param("a")  Article article);
     @Select("SELECT * FROM articles")
@@ -21,7 +21,8 @@ public interface ArticleMapper {
     Article selectByUuid(String uuid);
     @Delete("DELETE FROM articles WHERE uuid=#{uuid}")
     void deleteById(String uuid);
-    @Update("UPDATE articles SET title=#{a.title},thumbnail=#{a.thumbnail},author=#{a.author}" +
+    @Update("UPDATE articles SET title=#{a.title},thumbnail=#{a.thumbnail},author=#{a.author},description=#{a.description}" +
+
             "")
     void updateByUuid(@Param("a") Article newArticle);
 }

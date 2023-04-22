@@ -22,5 +22,9 @@ public class HomeController {
         model.addAttribute("articles", articles);
         return "pages/index";
     }
+    @GetMapping("/edit")
+    public  String getEdit(){
+        return "pages/article/edit";
+    }
 
 }
